@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Write a Bash script that displays: The content of the current directry
+for elem in *; do
+	echo "$elem" | cut -d "-" -f2
+done
