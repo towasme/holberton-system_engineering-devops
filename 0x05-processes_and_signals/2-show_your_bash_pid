@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# PID of your Bash process
+# disable=SC2009 shellcheck
+ps -efu | grep bash
