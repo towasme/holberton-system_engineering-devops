@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# create a new private and public key with certain parameters
+
+ssh-keygen -b 4096 -f holberton -N betty
