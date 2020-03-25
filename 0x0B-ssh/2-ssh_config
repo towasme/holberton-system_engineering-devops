@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#client configuration file
+
+cat ~/.ssh/holberton | ssh ubuntu@104.196.49.8 'cat - >> ~/.ssh/authorized_keys'
