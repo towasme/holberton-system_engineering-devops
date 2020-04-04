@@ -3,4 +3,6 @@
 
 sudo sed -i "\ server {\ a \ \t/listen 80 default_server;" /etc/nginx/sites-enabled/default
 
+sudo sed -i "\ http {\ a \ \t/listen 80 default_server;" /etc/nginx/nginx.conf
+
 sudo service nginx restart
