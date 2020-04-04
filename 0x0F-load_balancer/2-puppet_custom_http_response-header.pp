@@ -1,10 +1,6 @@
 # Puppet script to install a package
 
-package { 'nginx':
-  ensure => installed,
-}
-
 exec { 'nginx.conf':
   provider => shell,
-  command  => 'sudo sed -i "/http {/a \ \tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf',
+  command  => 'sudo apt-get -y update && sudo apt-get -y install nginx && sudo sed -i "/http {/a \ \tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf && sudo service nginx restart',
 }
