@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# bash to install nginx on a remote server and modified de HTTP header
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+sudo sed -i '35a error_page 404 /custom_404.html;\n location = /custom_404.html { \n root /usr/share/nginx/html; \n internal;\n}' /etc/nginx/sites-enabled/default
+
+sudo sed -i "/http {/a \ \tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf
+
+sudo service nginx restart
