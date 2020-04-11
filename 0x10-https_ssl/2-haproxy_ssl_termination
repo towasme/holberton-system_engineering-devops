@@ -36,20 +36,19 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend localnodes
+frontend http
         bind *:80
         bind *:443 ssl crt /etc/ssl/www.tomasmejia.tech/www.tomasmejia.tech.pem
-        mode http
         redirect scheme https code 301 if !{ ssl_fc }
-        default_backend nodes
         acl letsencrypt-acl path_beg /.well-known/acme-challenge/
         use_backend letsencrypt-backend if letsencrypt-acl
-
-backend nodes
         mode http
+        default_backend web-backend
+
+backend web-backend
         balance roundrobin
-        server 1223-web-01 104.196.49.8 check
-        server 1223-web-02 54.210.155.251 check
+        server web-01 104.196.49.8:80 check
+        server web-02 54.210.155.251:80 check
 
 backend letsencrypt-backend
         server letsencrypt 127.0.0.1:8888
