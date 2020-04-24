@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# bash backup dump file
+
+# create backup
+sudo mysqldump -uroot -p "$1" --all-databases > backup.sql
+
+# compress file
+tar -cvzf "$(date +%d-%m-%Y)".tar.gz backup.sql
