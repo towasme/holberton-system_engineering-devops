@@ -20,4 +20,4 @@ if __name__ == "__main__":
         for dictionary in t:
             title = dictionary['title']
             status = dictionary['completed']
-            csv_file.write(USER_ID, USERNAME, status, title)
+            csv2write.writerow(USER_ID, USERNAME, status, title)
