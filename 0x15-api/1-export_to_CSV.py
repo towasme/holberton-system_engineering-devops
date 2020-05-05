@@ -10,14 +10,12 @@ if __name__ == "__main__":
     r = requests.get(url + 'users/{}'.format(sys.argv[1]))
     all_users = r.json()
     USERNAME = all_users['username']
-
     t = requests.get(url + 'todos?userId={}'.format(sys.argv[1])).json()
-    USER_ID = t['userId']
+    USER_ID = sys.argv[1]
 
     with open("{}.csv".format(USER_ID), "w", newline="") as csv_file:
         csv2write = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
-
         for dictionary in t:
-            title = dictionary['title']
-            status = dictionary['completed']
-            csv2write.writerow(USER_ID, USERNAME, status, title)
+            title = dictionary.get('title')
+            status = dictionary.get('completed')
+            csv2write.writerow([USER_ID, USERNAME, status, title])
