@@ -9,8 +9,11 @@ def top_ten(subreddit):
     url = 'https://www.reddit.com/r/'
     r = requests.get(url + '{}/.json'.format(subreddit), headers=headers)
     subs = r.json()
-    subs_data = subs['data']
-    data_children = subs_data['children']
-    for i in range(10):
-        print(data_children[i]['data']['title'])
+    try:
+        subs_data = subs['data']
+        data_children = subs_data['children']
+        for i in range(10):
+            print(data_children[i]['data']['title'])
+    except:
+        print("None")
     return
